@@ -253,11 +253,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 		var audioClass = "";
 		var newScore = 0;
 
-		// reset listingStr if starting a new row, otherwise add a line break
+		// reset listingStr if starting a new row
 		if (bookIndex == 0) {
 			listingStr = "";
-		} else if (listingStr.length > 0 && book.totalCopies) {
-			listingStr += "<br>";
 		}
 
 		// continue if none were found
@@ -268,6 +266,11 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 		if (!showFormat['eBook'] && !book.isAudio) { continue; }
 
 		onlyRecommendations = false;
+
+		// add a new line for new listings
+		if (bookIndex && listingStr.length > 0 && book.totalCopies) {
+			listingStr += "<br>";
+		}
 
 		// if an audiobook, add a headphone icon
 		if (book.isAudio) {
