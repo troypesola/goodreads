@@ -120,7 +120,7 @@ function setupGetMobileAvailability() {
 	var config = { attributes: false, childList: true, subtree: true };
 	var callback = function(mutationsList) {
 	    for(var mutation of mutationsList) {
-	        if (mutation.type == 'childList' && 
+	        if (mutation.type == 'childList' &&
 	        	(mutation.target == targetShelf || mutation.target == targetList)) {
 	            getMobileAvailability();
 	        }
@@ -128,7 +128,7 @@ function setupGetMobileAvailability() {
 	};
 
 	var observer = new MutationObserver(callback);
-	
+
 	if (targetShelf) {
 		observer.observe(targetShelf, config);
 	}
@@ -344,12 +344,9 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
 		// reset listingStr if starting a new row
 		if (bookIndex == 0) {
 			listingStr = "";
-<<<<<<< HEAD
 			if (isMobile) {
 				listingStr = "<font color=#000><b>" + message.libraryStr + "</b></font><br>";
 			}
-=======
->>>>>>> combined
 		}
 
 		// continue if none were found
